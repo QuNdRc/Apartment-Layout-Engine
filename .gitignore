@@ -1,0 +1,67 @@
+# Build artifacts
+Debug/
+x64/
+obj/
+WpfApp1/bin/
+*.obj
+*.pdb
+*.exp
+*.lib
+*.ilk
+*.v141*
+*.ipdb
+*.iobj
+
+# IDE
+.idea/
+.vs/
+*.sln
+*.user
+*.suo
+*.DotSettings
+
+# DLLs at repo root (duplicates of bin/)
+/*.dll
+/*.exp
+/*.lib
+/*.obj
+/*.exe
+
+# Python
+ai_orchestrator/
+__pycache__/
+*.pyc
+.venv/
+
+# Tools (llama.cpp source)
+.tools/
+*/llama/
+*/models/
+*/llama/
+llama/
+models/
+
+# Temp
+*.tmp
+*.log
+
+# Design docs (keep only final)
+roo/
+plans/
+concept/
+documents/
+
+# Build project files (keep only source code)
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+
+# IDE config
+*.DotSettings.user
+*.CSharp
+
+# Publish folder (already in bin/)
+publish/
+
+# Node / other
+node_modules/"bin/gemma-4-E2B-it-Q5_K_M.gguf"  

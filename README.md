@@ -75,12 +75,12 @@
 
 ```
 .
-├── bin/                              ← Portable-бинарь (exe + DLL + модель + нормы)
+├── bin/                              ← Portable-бинарь (exe + DLL + нормы)
 │   ├── WpfApp1.exe
 │   ├── ApartmentLayoutEngine.dll     ← C++ движок симуляции
 │   ├── LlamaBridge.dll               ← C++ мост к llama.cpp
 │   ├── llama.dll, ggml*.dll          ← llama.cpp + CPU-бэкенды
-│   ├── gemma-4-E2B-it-Q5_K_M.gguf    ← Модель (Git LFS)
+│   ├── (модель — скачать отдельно)   ← gemma-4-E2B-it-Q5_K_M.gguf
 │   └── snip_norms/                   ← СП/СНиП для RAG
 ├── LlamaBridge/                      ← Исходный код моста (показан как демонстрация C++/ML)
 │   ├── bridge_static.cpp             ← Ядро: LB_Init, LB_LoadModel, LB_Generate
@@ -111,15 +111,16 @@
 - **Модель** `gemma-4-E2B-it-Q5_K_M.gguf` (~3.5 ГБ, Git LFS).
 - **Нормы** `snip_norms/` — 9 документов СП/СНиП.
 
-Модель хранится через Git LFS. При клонировании выполните:
+Модель **не входит в репозиторий** (ограничение GitHub LFS — 2 ГБ на файл,
+Q5_K_M весит ~3.5 ГБ). Скачайте её отдельно:
 
 ```
-git lfs pull
+# Скачать Gemma 4 E2B 4.6B Q5_K_M (~3.5 ГБ)
+# Например с Hugging Face:
+wget https://huggingface.co/bartowski/gemma-4-E2B-it-GGUF/resolve/main/gemma-4-E2B-it-Q5_K_M.gguf
 ```
 
-Если LFS недоступен, скачайте модель отдельно
-([Gemma 4 E2B 4.6B Q5_K_M](https://huggingface.co/bartowski/gemma-4-E2B-it-GGUF))
-и положите файл в `bin/`.
+И положите файл в `bin/` рядом с `WpfApp1.exe`.
 
 ### 2. Запустите
 
@@ -189,7 +190,7 @@ dotnet build WpfApp1/WpfApp1.csproj -c Release
 
 ## Модель
 
-Используется [Gemma 4 E2B 4.6B (Q5_K_M)](https://huggingface.co/bartowski/gemma-4-E2B-it-GGUF) —
+Используется [Gemma 4 E2B 4.6B (Q5_K_M)](https://huggingface.co/bartowski/gemma-4-E2B-it-GGUF) (~3.5 ГБ) —
 открытая модель Google, квантизованная для CPU-инференса. Почему именно она:
 
 - Гибридная архитектура (Gated Delta Net + Lightning Indexer) — быстрее
